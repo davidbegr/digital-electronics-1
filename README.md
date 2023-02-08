@@ -28,3 +28,13 @@ __github tutorial__
 
 new commits "+" and green - adding
 new commits "+" and red - deleting
+
+always do: 
+## Windows Git Bash or Linux:
+$ git status
+$ git add -A
+$ git status
+$ git commit -m "Creating 01-gates lab"
+$ git status
+$ git push
+$ git status
