@@ -26,3 +26,5 @@ __github tutorial__
 
 [link text itself]: http://www.reddit.com
 
+new commits "+" and green - adding
+new commits "+" and red - deleting
