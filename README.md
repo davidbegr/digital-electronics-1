@@ -29,7 +29,9 @@ __github tutorial__
 new commits "+" and green - adding
 new commits "+" and red - deleting
 
-always do: ```bash## Windows Git Bash or Linux:
+always do: 
+```bash
+## Windows Git Bash or Linux:
 $ git status
 $ git add -A
 $ git status
