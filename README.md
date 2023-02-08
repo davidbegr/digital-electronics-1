@@ -2,6 +2,7 @@
 ## by David Barton
 ### first lesson
 _Repository for course of digital electronics on BUT_
+
 __github tutorial__
 
 1. First ordered list item
