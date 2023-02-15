@@ -31,7 +31,7 @@
 
    Greater than:
 
-   ![K-maps](greater.png)
+   ![K-maps](greater_final.png)
 
    Less than:
 
