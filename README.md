@@ -22,7 +22,7 @@ __github tutorial__
 - Or minuses
 + Or pluses
 
-[I'm an inline-style link with title](https://www.vut.cz "BUT Homepage")
+[LATEX EQUATIONS SIMULATOR](https://editor.codecogs.com/)
 
 [link text itself]: http://www.reddit.com
 
