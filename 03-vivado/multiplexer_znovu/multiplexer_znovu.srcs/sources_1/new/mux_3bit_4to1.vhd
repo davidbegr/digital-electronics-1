@@ -21,9 +21,9 @@ end entity mux_3bit_4to1;
 ------------------------------------------------------------
 architecture Behavioral of mux_3bit_4to1 is
 begin
-    with addr_i select
-    f <= a when (sel="00") else  
-         b when (sel="01") else
-         c when (sel="10") else
-         d; 
+    with sel select
+    f <= a when "00",
+         b when "01",
+         c when "10",
+         d when others;
 end architecture Behavioral;
