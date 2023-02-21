@@ -53,9 +53,48 @@ begin
         -- Expected output
         assert s_f = "000"
         -- If false, then report an error
-        report "Input combination FAILED" severity error;
+        report "Input combination s_sel = 00 FAILED" severity error;
 
-        -- Report a note at the end of stimulus process
+        --second test case
+        s_a <= "000"; 
+        s_b <= "001";
+        s_c <= "010";  
+        s_d <= "011";  
+        s_sel <= "01";  
+                  
+        wait for 100 ns;
+        -- Expected output
+        assert s_f = "001"
+        -- If false, then report an error
+        report "Input combination s_sel = 01 FAILED" severity error;
+        
+        --third test case
+        s_a <= "000"; 
+        s_b <= "001";
+        s_c <= "010";  
+        s_d <= "011";  
+        s_sel <= "10";  
+                  
+        wait for 100 ns;
+        -- Expected output
+        assert s_f = "010"
+        -- If false, then report an error
+        report "Input combination s_sel = 10 FAILED" severity error;
+	
+        --4th test case
+        s_a <= "000"; 
+        s_b <= "001";
+        s_c <= "010";  
+        s_d <= "011";  
+        s_sel <= "11";  
+                  
+        wait for 100 ns;
+        -- Expected output
+        assert s_f = "011"
+        -- If false, then report an error
+        report "Input combination s_sel = 11 FAILED" severity error;
+	
+	-- Report a note at the end of stimulus process
         report "Stimulus process finished" severity note;
         wait;
     end process p_stimulus;
