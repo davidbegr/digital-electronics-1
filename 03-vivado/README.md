@@ -6,16 +6,20 @@
 
 ```vhdl
 architecture Behavioral of mux_3bit_4to1 is
-begin
 
-    -- WRITE YOUR CODE HERE
+begin
+    with sel select
+    f <= a when "00",
+    	 b when "01",
+    	 c when "10",
+    	 d when others;
 
 end architecture Behavioral;
 ```
 
 2. Screenshot with simulated time waveforms. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure]()
+   ![your figure](signals.png)
 
 3. Listing of pin assignments for the Nexys A7 board in `nexys-a7-50t.xdc`. **DO NOT list** the whole file, just your switch and LED settings.
 
@@ -35,4 +39,5 @@ set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { B_grea
 set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { B_equals_A_o }]; #IO_L7P_T1_D09_14 Sch=led[4]
 set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { B_less_A_o }]; #IO_L18N_T2_A11_D27_14 Sch=led[5]
 ```
-(https://www.edaplayground.com/x/nNBg)
+
+[MY EDU](https://www.edaplayground.com/x/nNBg)
