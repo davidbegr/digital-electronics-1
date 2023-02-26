@@ -39,5 +39,3 @@ set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { B_grea
 set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { B_equals_A_o }]; #IO_L7P_T1_D09_14 Sch=led[4]
 set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { B_less_A_o }]; #IO_L18N_T2_A11_D27_14 Sch=led[5]
 ```
-
-[MY EDU](https://www.edaplayground.com/x/nNBg)
