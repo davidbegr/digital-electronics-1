@@ -32,16 +32,19 @@
         elsif (en = '1') then         -- Test if counter is enabled
 
           -- TEST COUNTER DIRECTION HERE
-
-            sig_cnt <= sig_cnt + 1;
+          if (cnt_up = '1') then
+            sig_cnt <= sig_cnt +1;
+          else
+            sig_cnt <= sig_cnt - 1;
         end if;
       end if;
-    end process p_cnt_up_down;
+    end if;
+  end process p_cnt_up_down;
 ```
 
 2. Screenshot with simulated time waveforms. Test: (a) reset, (b) counter direction, (c) enable. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure]()
+   ![your figure](bidirect.png)
 
 ### Two counters
 
