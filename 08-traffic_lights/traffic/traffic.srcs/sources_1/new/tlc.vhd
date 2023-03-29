@@ -112,59 +112,72 @@ begin
         -- according to the delay value.
         case sig_state is
 
-          when WEST_STOP =>
-            -- Count to 2 secs
-            if (sig_cnt < c_DELAY_2SEC) then
-              sig_cnt <= sig_cnt + 1;
-            else
-              -- Move to the next state
-              sig_state <= WEST_GO;
-              -- Reset local counter value
-              sig_cnt <= c_ZERO;
-            end if;
+             
+              when WEST_STOP =>
+                -- Count to 2 secs
+                if (sig_cnt < c_DELAY_2SEC) then
+                  sig_cnt <= sig_cnt + 1;
+                else
+                  -- Move to the next state
+                  sig_state <= WEST_GO;
+                  -- Reset local counter value
+                  sig_cnt <= c_ZERO;
+                end if;
 
-          when WEST_GO =>
-            if (sig_cnt < c_DELAY_4SEC) then
-                sig_cnt <= sig_cnt + 1;
-            else
-                sig_state <= WEST_WAIT;
-                sig_cnt <= c_ZERO;
-          end if;
-          when WEST_WAIT =>
-            if (sig_cnt < c_DELAY_1SEC) then
-                sig_cnt <= sig_cnt + 1;
-            else
-                sig_state <= SOUTH_STOP;
-                sig_cnt <= c_ZERO;
-          end if;
-          when SOUTH_STOP =>
-            if (sig_cnt < c_DELAY_2SEC) then
-                sig_cnt <= sig_cnt + 1;
-            else
-                sig_state <= SOUTH_GO;
-                sig_cnt <= c_ZERO;
-            end if;
-          when SOUTH_GO =>
-            if (sig_cnt < c_DELAY_4SEC) then
-                sig_cnt <= sig_cnt + 1;
-            else
-                sig_state <= SOUTH_WAIT;
-                sig_cnt <= c_ZERO;
-          end if;
-          when SOUTH_WAIT =>
-            if (sig_cnt < c_DELAY_1SEC) then
-                sig_cnt <= sig_cnt + 1;
-            else
-                sig_state <= WEST_STOP;
-                sig_cnt <= c_ZERO;
-          end if;
+             
+             
+              when WEST_GO =>
+                if (sig_cnt < c_DELAY_4SEC) then
+                    sig_cnt <= sig_cnt + 1;
+                else
+                    sig_state <= WEST_WAIT;
+                    sig_cnt <= c_ZERO;
+              end if;
+             
+             
+              when WEST_WAIT =>
+                if (sig_cnt < c_DELAY_1SEC) then
+                    sig_cnt <= sig_cnt + 1;
+                else
+                    sig_state <= SOUTH_STOP;
+                    sig_cnt <= c_ZERO;
+              end if;
+             
+             
+             
+              when SOUTH_STOP =>
+                if (sig_cnt < c_DELAY_2SEC) then
+                    sig_cnt <= sig_cnt + 1;
+                else
+                    sig_state <= SOUTH_GO;
+                    sig_cnt <= c_ZERO;
+                end if;
+             
+             
+              when SOUTH_GO =>
+                if (sig_cnt < c_DELAY_4SEC) then
+                    sig_cnt <= sig_cnt + 1;
+                else
+                    sig_state <= SOUTH_WAIT;
+                    sig_cnt <= c_ZERO;
+              end if;
+             
+             
+              when SOUTH_WAIT =>
+                if (sig_cnt < c_DELAY_1SEC) then
+                    sig_cnt <= sig_cnt + 1;
+                else
+                    sig_state <= WEST_STOP;
+                    sig_cnt <= c_ZERO;
+              end if;
 
-          when others =>
+             
+              when others =>
             -- It is a good programming practice to use the
             -- OTHERS clause, even if all CASE choices have
             -- been made.
-            sig_state <= WEST_STOP;
-            sig_cnt   <= c_ZERO;
+                sig_state <= WEST_STOP;
+                sig_cnt   <= c_ZERO;
 
         end case;
 
