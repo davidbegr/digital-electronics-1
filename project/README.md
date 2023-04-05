@@ -4,6 +4,13 @@
 * Šimon Bárta (responsible for ...)
 * Jakub Fojtík (responsible for ...)
 
+## prvotni napady + poznamky
+- prijimac musi vykreslit nejak signal tzn nejlepe slovnik znaku a pokud nam prijde spravna sekvence .- tak vykreslime nejaky znak nejlepe ten odpovidajici na hexadecimalu treba
+- vstup a vystup bude v constrain file odkomentovany a pridany jako OUT nebo IN v designu
+- jedno tlacitko co bude ovladat tecky i carky: tecka bude tecka; carka budou 3 tecky; konec vety oznacen napr 7 sek bez stisku naseho tlacitka
+- jak zapsat data z BTNC na soubor nekolika 1 a 0 abzchom je mohli precist nebo vyslat? ASI COUNTER.vhd by mel pomoct
+
+
 ## Theoretical description and explanation
 
 Enter a description of the problem and how to solve it.
