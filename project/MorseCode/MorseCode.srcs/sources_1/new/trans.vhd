@@ -1,23 +1,5 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 04/05/2023 11:37:23 AM
--- Design Name: 
--- Module Name: trans - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
+-- DONT REALLY NEED THIS EVERYTHING HERE IS IN decoder.vhd by ME
+--should be segment
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -41,7 +23,8 @@ architecture Behavioral of trans is
 
 begin
     
-    --WE NEED TO ADD FUNCTIONS IN SOME ENTITY PROBABLY TO KNOW WHAT IS dot AND WHAT IS line
+    --WE NEED TO ADD FUNCTIONS IN SOME ENTITY PROBABLY 
+    --TO KNOW WHAT IS dot AND WHAT IS line
 
   hex2seg : entity work.decoder
       port map(
