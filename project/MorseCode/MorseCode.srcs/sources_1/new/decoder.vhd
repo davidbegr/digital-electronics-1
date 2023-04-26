@@ -5,10 +5,11 @@ use ieee.numeric_std.all;
 
 entity morse_decoder is
     port (
+        cnt_up : in    std_logic;
         clk : in std_logic;
         reset : in std_logic;
         button : in std_logic;
-        generator : in std_logic;
+        generator : in std_logic; -- propably could be same signal as signal_in
         signal_in : in std_logic;
         display : out std_logic_vector(6 downto 0)
     );
@@ -16,13 +17,16 @@ end entity;
 
 architecture behavior of morse_decoder is
     -- define Morse code lookup table
-    type morse_code_array is array(character range 'A' to 'Z') of string(1 to 4);
-    constant morse_code : morse_code_array := (
-        'A' => ".-", 'B' => "-...", 'C' => "-.-.", 'D' => "-..", 'E' => ".", 'F' => "..-.", 'G' => "--.", 'H' => "....",
-        'I' => "..", 'J' => ".---", 'K' => "-.-", 'L' => ".-..", 'M' => "--", 'N' => "-.", 'O' => "---", 'P' => ".--.",
-        'Q' => "--.-", 'R' => ".-.", 'S' => "...", 'T' => "-", 'U' => "..-", 'V' => "...-", 'W' => ".--", 'X' => "-..-",
-        'Y' => "-.--", 'Z' => "--.."
-    );
+    -- MUST REMAKE ON BIT-LIKE FORMAT HOPEFULLY NOT MY TASK
+    -- PROBABLY 1 IS dash AND 0 IS dot, WE NEED SOME "TRANSLATOR" MAYBE
+    
+    --type morse_code_array is array(character range 'A' to 'Z') of string(1 to 4);
+    --constant morse_code : morse_code_array := (
+    --    'A' => ".-", 'B' => "-...", 'C' => "-.-.", 'D' => "-..", 'E' => ".", 'F' => "..-.", 'G' => "--.", 'H' => "....",
+    --    'I' => "..", 'J' => ".---", 'K' => "-.-", 'L' => ".-..", 'M' => "--", 'N' => "-.", 'O' => "---", 'P' => ".--.",
+    --    'Q' => "--.-", 'R' => ".-.", 'S' => "...", 'T' => "-", 'U' => "..-", 'V' => "...-", 'W' => ".--", 'X' => "-..-",
+    --    'Y' => "-.--", 'Z' => "--.."
+    --);
 
     -- define signal timing constants
     constant dot_duration : natural := 250; -- in ms
@@ -31,6 +35,7 @@ architecture behavior of morse_decoder is
     constant word_space_duration : natural := dot_duration * 7;
 
     -- define internal signals
+    signal sig_cnt : unsigned(3 downto 0);
     signal signal_buffer : std_logic_vector(2 downto 0);        -- was (because of us): signal signal_buffer : std_logic_vector(1 downto 0);
     signal signal_duration : natural;
     signal character_buffer : std_logic_vector(3 downto 0);
@@ -40,7 +45,7 @@ architecture behavior of morse_decoder is
 begin
 
     -- counter to measure signal duration
-    process(clk)
+    p_duration : process(clk)
     begin
         if rising_edge(clk) then
             if reset = '1' then
@@ -56,7 +61,7 @@ begin
     end process;
 
     -- buffer incoming signal
-    process(clk)
+    p_buffer : process(clk)
     begin
         if rising_edge(clk) then
             signal_buffer <= signal_buffer(1 downto 0) & signal_in;     -- add 1 to certain position in signal_buffer and move to next position
@@ -64,7 +69,7 @@ begin
     end process;
 
     -- decode morse code and update character buffer
-    process(signal_duration, signal_buffer)
+    p_decode : process(signal_duration, signal_buffer)
         variable morse_character : string(1 to 4);
         variable character : character;
     begin
@@ -78,34 +83,54 @@ begin
             enable_display <= '1';
         elsif signal_buffer = "0000001" then
             -- end of character
-            character := find_character(morse_character);
-            if character /= ' ' then
-                character_buffer <= character_buffer(2 downto 0) & "0000";
-            end if;
-        elsif signal_buffer = "0000000001" then
+        --    character := find_character(morse_character);
+        --    if character /= ' ' then
+        --        character_buffer <= character_buffer(2 downto 0) & "0000";
+        --    end if;
+        --elsif signal_buffer = "0000000001" then
 -- end of word
-            character := find_character(morse_character);
-            character_buffer <= character & " ";
+        --    character := find_character(morse_character);
+        --    character_buffer <= character & " ";
         end if;
     end process;
 
     -- find character corresponding to Morse code
-    function find_character(morse_code_str : string) return character is
-        variable i : natural;
-    begin
-        for i in morse_code'range loop
-            if morse_code(morse_code'left + i) = morse_code_str then
-                return character'val(morse_code'left + i);
-            end if;
-        end loop;
-        return ' ';
-    end function;
-    
+    -- we should apparently use counter OR just our process(character_buffer)
+    -- and send -. in bit-like format so COUNTER I GUESS IT IS
+    --function find_character(morse_code_str : string) return character is
+    --   variable n : natural
+    --begin
+    --  for n in morse_code'range loop
+    --    if morse_code(morse_code'left + n) = morse_code_str then
+    --      return character'val(morse_code'left + n)
+    --        end if;
+    --      end loop;
+    --    return ' ';
+    --end function;
+  
+  --counter for memory of each letter - needed little touches  
+  process (clk) is
+  begin
+
+    if rising_edge(clk) then
+      if (reset = '1') then
+        sig_cnt <= (others => '0');
+      elsif (signal_in = '1') then
+
+        if (cnt_up = '1') then
+            sig_cnt <= sig_cnt + 1;
+        else
+            sig_cnt <= sig_cnt - 1;
+        end if;
+      end if;
+    end if;
+  end process p_cnt_up_down;
+  
     -- update display buffer
-    process(character_buffer)
+    p_character_buffer : process(character_buffer)
     begin
         case character_buffer is
-            when ".- " => display_buffer <= "1000000";  -- A
+            when '01' => display_buffer <= '1000000';  -- A
             when ".... " => display_buffer <= "1000000";  -- B
             when ".... " => display_buffer <= "1000000";  -- C
             when ".... " => display_buffer <= "1000000";  -- D
@@ -138,7 +163,7 @@ begin
     end process;
 
     -- update display
-    process(clk)
+    p_update_display : process(clk)
     begin
         if rising_edge(clk) then
             if reset = '1' then
