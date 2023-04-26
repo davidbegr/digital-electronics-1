@@ -71,17 +71,19 @@ begin
     -- decode morse code and update character buffer
     p_decode : process(signal_duration, signal_buffer)
         variable morse_character : string(1 to 4);
-        variable character : character;
+       -- variable character : character;
     begin
         if signal_duration = 0 then
             -- do nothing, waiting for next signal
         elsif signal_buffer = "001" then
-            morse_character := ".";
+            morse_character := "001";
             enable_display <= '1';
         elsif signal_buffer = "0001" then
-            morse_character := "-";
+            morse_character := "111";
             enable_display <= '1';
         elsif signal_buffer = "0000001" then
+            morse_character := "000";
+            enable_display <= '1';
             -- end of character
         --    character := find_character(morse_character);
         --    if character /= ' ' then
@@ -124,40 +126,39 @@ begin
         end if;
       end if;
     end if;
-  end process p_cnt_up_down;
+  end process;
   
     -- update display buffer
     p_character_buffer : process(character_buffer)
     begin
         case character_buffer is
-            when '01' => display_buffer <= '1000000';  -- A
-            when ".... " => display_buffer <= "1000000";  -- B
-            when ".... " => display_buffer <= "1000000";  -- C
-            when ".... " => display_buffer <= "1000000";  -- D
-            when ".... " => display_buffer <= "1000000";  -- E
-            when ".... " => display_buffer <= "1000000";  -- F
-            when ".... " => display_buffer <= "1000000";  -- G
-            when ".... " => display_buffer <= "1000000";  -- H
-            when ".... " => display_buffer <= "1000000";  -- I
-            when ".... " => display_buffer <= "1000000";  -- J
-            when ".... " => display_buffer <= "1000000";  -- K
-            when ".... " => display_buffer <= "1000000";  -- L
-            when ".... " => display_buffer <= "1000000";  -- M
-            when ".... " => display_buffer <= "1000000";  -- N
-            when ".... " => display_buffer <= "1000000";  -- O
-            when ".... " => display_buffer <= "1000000";  -- P
-            when ".... " => display_buffer <= "1000000";  -- Q
-            when ".... " => display_buffer <= "1000000";  -- R
-            when ".... " => display_buffer <= "1000000";  -- S
-            when ".... " => display_buffer <= "1000000";  -- T
-            when ".... " => display_buffer <= "1000000";  -- U
-            when ".... " => display_buffer <= "1000000";  -- V
-            when ".... " => display_buffer <= "1000000";  -- W
-            when ".... " => display_buffer <= "1000000";  -- X
-            when ".... " => display_buffer <= "1000000";  -- Y
-            when ".... " => display_buffer <= "1000000";  -- Z
-            -- for Jakub to do :* 
-
+            when ".-"   => display_buffer <= "0000010";  -- A
+            when "-..." => display_buffer <= "1100000";  -- B
+            when "-.-." => display_buffer <= "1110010";  -- C
+            when "-.."  => display_buffer <= "1000010";  -- D
+            when "."    => display_buffer <= "0110000";  -- E
+            when "..-." => display_buffer <= "0111000";  -- F
+            when "--."  => display_buffer <= "0100001";  -- G
+            when "...." => display_buffer <= "1101000";  -- H
+            when ".."   => display_buffer <= "0111011";  -- I
+            when ".---" => display_buffer <= "0100111";  -- J
+            when "-.-"  => display_buffer <= "0101000";  -- K
+            when ".-.." => display_buffer <= "1110001";  -- L
+            when "--"   => display_buffer <= "0101010";  -- M
+            when "-."   => display_buffer <= "1101010";  -- N
+            when "---"  => display_buffer <= "1100010";  -- O
+            when ".--." => display_buffer <= "0011000";  -- P
+            when "--.-" => display_buffer <= "0001100";  -- Q
+            when ".-."  => display_buffer <= "1111010";  -- R
+            when "..."  => display_buffer <= "0100101";  -- S
+            when "-"    => display_buffer <= "1110000";  -- T
+            when "..-"  => display_buffer <= "1100011";  -- U
+            when "...-" => display_buffer <= "1010101";  -- V
+            when ".--"  => display_buffer <= "1010100";  -- W
+            when "-..-" => display_buffer <= "1101011";  -- X
+            when "-.--" => display_buffer <= "1000100";  -- Y
+            when "--.." => display_buffer <= "0010011";  -- Z
+             
             when others => display_buffer <= "1111111";  -- blank
         end case;
     end process;
@@ -176,4 +177,4 @@ begin
             end if;
         end if;
     end process;
-    
+end architecture;
