@@ -20,7 +20,7 @@ Our software should be able to remember 8-bit number using shift registers in ch
 
 ### Component(s) simulation
 
-
+We were not able to simulate project.
 
 ## Instructions
 
