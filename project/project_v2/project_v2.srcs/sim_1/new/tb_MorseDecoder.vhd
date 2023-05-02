@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-
 entity tb_MorseDecoder is
 --  Port ( );
 end tb_MorseDecoder;
@@ -32,17 +31,17 @@ begin
     -- entity (Unit Under Test)
     uut_MorseDecoder : entity work.MorseDecoder
         port map(
-            BTNC        => sig_BTNC;
-            CA          => sig_CA;
-            CB          => sig_CB;
-            CC          => sig_CC;
-            CD          => sig_CD;
-            CE          => sig_CE;
-            CF          => sig_CF;
-            CG          => sig_CG;
-            DP          => sig_DP;
-            AN          => sig_AN;
-            morseToConvert => sig_morseToConvert;
+            BTNC        => sig_BTNC,
+            CA          => sig_CA,
+            CB          => sig_CB,
+            CC          => sig_CC,
+            CD          => sig_CD,
+            CE          => sig_CE,
+            CF          => sig_CF,
+            CG          => sig_CG,
+            DP          => sig_DP,
+            AN          => sig_AN,
+            morseToConvert => sig_morseToConvert,
             seg         => sig_seg
         );
 
@@ -59,7 +58,7 @@ begin
       end loop;
       wait;
 
-    end process p_clk_gen
+    end process p_clk_gen;
      
     p_stimulus : process
     begin

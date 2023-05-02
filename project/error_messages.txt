@@ -1,0 +1,19 @@
+LINUX TEROSVDHL:
+
+ghdl -m --std=02 --ieee=standard  tb_MorseDecoder
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sim_1/new/tb_MorseDecoder.vhd:24:33: no declaration for "morse"
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sources_1/new/top.vhd:9:10: use of synopsys package "std_logic_textio" needs the -fsynopsys option
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sim_1/new/tb_MorseDecoder.vhd:44:31: can't associate 'sig_morsetoconvert' with port "morsetoconvert"
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sim_1/new/tb_MorseDecoder.vhd:44:31: (type of 'sig_morsetoconvert' is an erroneous type)
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sources_1/new/top.vhd:25:9: (type of port "morsetoconvert" is morse)
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sim_1/new/tb_MorseDecoder.vhd:53:9: no declaration for "sig_clk_100mhz"
+/home/david/digital-electronics-1/project/project_v2/project_v2.srcs/sim_1/new/tb_MorseDecoder.vhd:55:9: no declaration for "sig_clk_100mhz"
+make: *** [Makefile:16: tb_MorseDecoder] Error 1
+
+************************************************************************************************
+---> Build directory: /home/david/.teroshdl/build
+/tmp/edam.json
+---> The test has finished with errors!
+****************************************************************************************************************************************
+
+EDU PLAYGROUND:
