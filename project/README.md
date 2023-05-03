@@ -7,6 +7,8 @@
 ## Theoretical description and explanation
 
 Our assignment was to do morse code transmitter and reciever using Nexys A7-50T development board in VHDL language. We wanted to use one button that would send 1 for HIGH and 0 for LOW, then using time intervals of 250 ms. One interaval of 250 ms should be dot and space between, 1000 ms should be dash. These characters (dot, dash, space) are then written into array of 4 double digits. The array is then 8-bits long and each two digits represents sign: 00 = nothing, 01 = dot, 10 = dash. These 8-bit numbers are then used in our case-when statement to light-up correct letter from alphabet on 7-segment display.
+Here are letters how they should show up on display:
+![alphabet](abc.png)
 
 ## Hardware description of demo application
 
