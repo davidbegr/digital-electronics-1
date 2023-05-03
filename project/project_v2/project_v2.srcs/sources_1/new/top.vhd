@@ -29,7 +29,7 @@ end MorseDecoder;
 
 architecture Behavioral of MorseDecoder is
 -- This component creates a subModule characterRecognizer to be used.
--- Signal to transfer output of characterRecognizer to SSD
+
         signal morsedata : Morse; 
 begin
     characterRecognizer : entity work.characterRecognizer
@@ -38,10 +38,9 @@ begin
             button => BTNC,
             OutBus => Morse);
 
--- This component creates a subModule SSD to be used.
     decoder : entity work.decoder
         Port map(
-            morseToConvert => convert,
+            morseToConvert => Morse,
             seg(6) => CA,
             seg(5) => CB,
             seg(4) => CC,
@@ -49,9 +48,5 @@ begin
             seg(2) => CE,
             seg(1) => CF,
             seg(0) => CG);
-
--- Map the inputs and outputs of each submodule 
---    reciever : characterRecognizer port map(ClkIN => clk, button => buttonIn, OutBus => morsedata);
---    display : decoder port map(morseToConvert => morsedata, seg => seg);
 
 end architecture behavioral;

@@ -11,6 +11,7 @@ architecture Behavioral of tb_MorseDecoder is
     constant c_CLK_100MHZ_PERIOD : time := 10 ns;
 
 -- Local signals
+    signal sig_clk_100mhz : std_logic;
     signal sig_BTNC    : std_logic;
     signal sig_CA      : STD_LOGIC;
     signal sig_CB      : STD_LOGIC;
@@ -21,7 +22,7 @@ architecture Behavioral of tb_MorseDecoder is
     signal sig_CG      : STD_LOGIC;
     signal sig_DP      : STD_LOGIC;
     signal sig_AN      : STD_LOGIC_VECTOR (7 downto 0);
-    signal sig_morseToConvert : Morse;
+    --signal sig_morseToConvert : Morse;
     signal sig_seg : std_logic_vector(6 downto 0);
 
 
@@ -41,7 +42,7 @@ begin
             CG          => sig_CG,
             DP          => sig_DP,
             AN          => sig_AN,
-            morseToConvert => sig_morseToConvert,
+            --morseToConvert => sig_morseToConvert,
             seg         => sig_seg
         );
 

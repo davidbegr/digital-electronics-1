@@ -10,7 +10,7 @@ Our assignment was to do morse code transmitter and reciever using Nexys A7-50T 
 
 ## Hardware description of demo application
 
-By pressing BTNC (middle button) on board bz morse code standarts, shift register in our code should be able to recognize our letter and display it on 7-segment display. We were not able to implement input to our board so we can't show the letters by generator. 
+By pressing BTNC (middle button) on board by morse code standarts, shift register in our code should be able to recognize our letter and display it on 7-segment display. We were not able to implement input to our board so we can't show the letters by generator. 
 
 ## Software description
 
